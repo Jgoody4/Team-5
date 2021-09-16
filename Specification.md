@@ -213,7 +213,7 @@ A user who is logged in will be able to see how long they have been using the ap
 * The System should display the total time that they have had the app open.
 * The System shows the option to hide the display.
 
-Use Case Name: Create time blocks
+## Use Case Name: Create time blocks
 ## Summary
 The user sets a certain range of time that schedules their study time.
 
@@ -240,7 +240,7 @@ The user sets a certain range of time that schedules their study time.
 ### Alternate Postconditions
 * The time block should be able to be dismissed manually if the user wants to.
 
-Use Case Name: Reminder popup
+## Use Case Name: Reminder popup
 ## Summary
 The app reminds the user to study with a popup notification based on the time block they have created.
 
@@ -264,7 +264,7 @@ The app reminds the user to study with a popup notification based on the time bl
 ### Alternate Postconditions
 * The reminder does not show if the time block is dismissed.
 
-Use Case Name: Input a Markdown File and Output Flash Cards.
+## Use Case Name: Input a Markdown File and Output Flash Cards.
 ## Summary
 Generate flash cards based on the user’s inputs.
 

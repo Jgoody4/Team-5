@@ -213,3 +213,67 @@ A user who is logged in will be able to see how long they have been using the ap
 * The System should display the total time that they have had the app open.
 * The System shows the option to hide the display.
 
+## Use Case Name : Overhead view of all Flashcards 
+##Summary 
+* A user who is logged in will be able to take his flashcards and display an overhead view of them all.
+
+## Actors
+* The user 
+* The app
+
+## Pre conditions 
+* A user must be logged in
+
+## Triggers
+* Must select the “memorizing” option. Then select “overhead view”.
+
+## Primary Sequence
+* The flashcards will start changing view to an overhead and user will be able to see all flashcards
+The user will be able to click cards away.
+
+## Primary Postconditions 
+* If the user clicks “done” then the overhead view of cards will go back into a shuffled order or regular memorization. 
+
+## Use Case Name : Percentage system / Analytic tool for right and wrong answers recorded.
+##Summary
+* A user who is logged in and in the “memorizing” part of the app will be able to see their results after all the flashcards have been flipped and studied.
+
+##Actors 
+* The user 
+* The app
+
+##Preconditions 
+* A user must be logged in 
+
+##Triggers
+* User must click on “memorize” and by default when the user starts flipping cards and memorizing the analytic tool will mark cards right or wrong and use basic math.
+
+##Primary Sequence 
+* The user will use the memorizing feature like normal and at the end of the flashcards he/she will get a percentage of right and wrong answers.
+* The user will be asked to study the wrong answers or they can start with shuffled cards again.
+
+##Primary post conditions
+* If user clicks to study wrong answers then the cards will only show the wrong answers they got. 
+* If user doesn’t want to study wrong answers then memorizing feature goes back to normal and repeats the analytic tool for the next iteration of memorizing. 
+
+##Use Case Name : Syntax Highlighting
+##Summary
+* The user will be able to format parts of their notes as code, as if they were writing in an IDE.
+
+##Actors
+* The user 
+* The app
+
+##Preconditions
+* The user must be logged in, and viewing notes with the “notes” feature.
+
+##Triggers
+* The user must encase the text they wish to view as code with three backticks once at the beginning of the segment.
+
+##Primary Sequence 
+* The user types three backticks, a multi-line code block should appear.
+* The user will be able to select a language of choice in the top-left corner of this block by hovering over it with the mouse.
+* Code will automatically highlight key words typed.
+
+##Primary post conditions
+* User will be able to format code within the notes.

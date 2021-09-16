@@ -112,3 +112,104 @@ A user who is logged in will be able to create folders for their notes and add n
 
 ## Primary Postconditions
 * The System should display that a folder has been created with the user-inputted name.
+
+## Use Case Name: Share flashcards (add to their account)
+## Summary
+A user who is logged in will be able to share flashcards with other users.
+
+## Actors
+* The User.
+* The App.
+
+## Preconditions
+* The user has to be logged in.
+
+## Triggers
+* The user must select the “Share Flashcards” option.
+
+## Primary Sequence
+* The System prompts the user to enter the username of the user they want to share their flashcards with.
+* The System then shares the flashcards.
+
+## Primary Postconditions
+* The other user should have the shared flashcards.
+
+## Alternative Sequences
+* The user entered a username that is not associated with any other users.
+* The System displays an error message.
+* The System asks the user to enter a valid username.
+
+## Use Case Name: Convert Markdown Notes to PDF
+## Summary
+A user who is logged in will be able to convert their markdown notes into a pdf file.
+
+## Actors
+* The User.
+* The App.
+
+## Preconditions
+* The user has to be logged in.
+
+## Triggers
+* The user must select the “Convert Markdown Notes to PDF” option.
+
+## Primary Sequence
+* The System prompts the user to insert a name for their PDF file.
+* The System then converts the notes into a PDF file.
+
+## Primary Postconditions
+* The System should display a download link for the file.
+
+## Use Case Name: Share Notes with other people (add to their account)
+## Summary
+A user who is logged in will be able to share their notes with other users.
+
+## Actors
+* The User.
+* The App.
+
+## Preconditions
+* The user has to be logged in.
+
+## Triggers
+* The user must select the “Share Notes” option.
+
+## Primary Sequence
+* The System prompts the user to enter the username of the user they want to share their notes with.
+* The System then shares the notes.
+
+## Primary Postconditions
+* The other user should have the shared notes.
+
+## Alternative Sequences
+* The user entered a username that is not associated with any other users.
+* The System displays an error message.
+* The System asks the user to enter a valid username.
+
+## Use Case Name: Total time studying (having app open) (daily/weekly/monthly)
+## Summary
+A user who is logged in will be able to see how long they have been using the app.
+
+## Actors
+* The User.
+* The App.
+
+## Preconditions
+* The user has to be logged in.
+
+## Triggers
+* The user must select the “Total Time” option.
+
+## Primary Sequence
+* The System asks the user to select daily, weekly, or monthly.
+    * Selecting daily will display a list of days that the user had the app open, as well as the average of how much time the user had the app open on a daily basis.
+          * Selecting a day will display the total time the user had the app open on that day.
+    * Selecting weekly will display a list of weeks that the user had the app open, as well as the average of how much time the user had the app open on a weekly basis.
+          * Selecting a week will display the total time the user had the app open during that week.
+    * Selecting monthly will display a list of months that the user had the app open, as well as the average of how much time the user had the app open on a monthly basis.
+          * Selecting a month will display the total time the user had the app open during that month.
+
+## Primary Postconditions
+* The System should display the total time that they have had the app open.
+* The System shows the option to hide the display.
+

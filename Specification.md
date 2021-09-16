@@ -214,6 +214,7 @@ A user who is logged in will be able to see how long they have been using the ap
 * The System shows the option to hide the display.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Use Case Name : Overhead view of all Flashcards 
 ##Summary 
 * A user who is logged in will be able to take his flashcards and display an overhead view of them all.
@@ -280,6 +281,9 @@ The user will be able to click cards away.
 * User will be able to format code within the notes.
 =======
 Use Case Name: Create time blocks
+=======
+## Use Case Name: Create time blocks
+>>>>>>> 4f7f3afce91165a427cc728cfd9824dbfbbff6b4
 ## Summary
 The user sets a certain range of time that schedules their study time.
 
@@ -306,7 +310,7 @@ The user sets a certain range of time that schedules their study time.
 ### Alternate Postconditions
 * The time block should be able to be dismissed manually if the user wants to.
 
-Use Case Name: Reminder popup
+## Use Case Name: Reminder popup
 ## Summary
 The app reminds the user to study with a popup notification based on the time block they have created.
 
@@ -330,7 +334,7 @@ The app reminds the user to study with a popup notification based on the time bl
 ### Alternate Postconditions
 * The reminder does not show if the time block is dismissed.
 
-Use Case Name: Input a Markdown File and Output Flash Cards.
+## Use Case Name: Input a Markdown File and Output Flash Cards.
 ## Summary
 Generate flash cards based on the user’s inputs.
 

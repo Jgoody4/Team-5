@@ -214,7 +214,7 @@ Better Student
 * The System shows the option to hide the display.
 D
 ## Use Case Name : Overhead view of all Flashcards 
-##Summary 
+## Summary 
 * A user who is logged in will be able to take his flashcards and display an overhead view of them all.
 
 ## Actors
@@ -235,47 +235,47 @@ The user will be able to click cards away.
 * If the user clicks “done” then the overhead view of cards will go back into a shuffled order or regular memorization. 
 
 ## Use Case Name : Percentage system / Analytic tool for right and wrong answers recorded.
-##Summary
+## Summary
 * A user who is logged in and in the “memorizing” part of the app will be able to see their results after all the flashcards have been flipped and studied.
 
 ##Actors 
 * The user 
 * The app
 
-##Preconditions 
+## Preconditions 
 * A user must be logged in 
 
-##Triggers
+## Triggers
 * User must click on “memorize” and by default when the user starts flipping cards and memorizing the analytic tool will mark cards right or wrong and use basic math.
 
-##Primary Sequence 
+## Primary Sequence 
 * The user will use the memorizing feature like normal and at the end of the flashcards he/she will get a percentage of right and wrong answers.
 * The user will be asked to study the wrong answers or they can start with shuffled cards again.
 
-##Primary post conditions
+## Primary post conditions
 * If user clicks to study wrong answers then the cards will only show the wrong answers they got. 
 * If user doesn’t want to study wrong answers then memorizing feature goes back to normal and repeats the analytic tool for the next iteration of memorizing. 
 
-##Use Case Name : Syntax Highlighting
-##Summary
+## Use Case Name : Syntax Highlighting
+## Summary
 * The user will be able to format parts of their notes as code, as if they were writing in an IDE.
 
-##Actors
+## Actors
 * The user 
 * The app
 
-##Preconditions
+## Preconditions
 * The user must be logged in, and viewing notes with the “notes” feature.
 
-##Triggers
+## Triggers
 * The user must encase the text they wish to view as code with three backticks once at the beginning of the segment.
 
-##Primary Sequence 
+## Primary Sequence 
 * The user types three backticks, a multi-line code block should appear.
 * The user will be able to select a language of choice in the top-left corner of this block by hovering over it with the mouse.
 * Code will automatically highlight key words typed.
 
-##Primary post conditions
+## Primary post conditions
 * User will be able to format code within the notes.
 
 ## Use Case Name: Create time blocks
@@ -302,7 +302,7 @@ The user will be able to click cards away.
 * The time block made should be shown. 
 * The time block should be able to be dismissed automatically. 
 
-### Alternate Postconditions
+## Alternate Postconditions
 * The time block should be able to be dismissed manually if the user wants to.
 
 ## Use Case Name: Reminder popup
@@ -326,7 +326,7 @@ The user will be able to click cards away.
 * A reminder popup should be shown.
 * The system shows an option to clear reminder(s).
 
-### Alternate Postconditions
+## Alternate Postconditions
 * The reminder does not show if the time block is dismissed.
 
 ## Use Case Name: Input a Markdown File and Output Flash Cards.
@@ -351,8 +351,36 @@ The user will be able to click cards away.
 ## Primary Postconditions
 * The flash cards are made and shown to the user.
 
-### Alternate Postconditions
+## Alternate Postconditions
 * The user has inputted an empty file.
     * The System will display a message “Error: empty inputs. Cannot output flash cards”
     * The System will prompt the user to input notes again. 
 
+## Use Case Name: A Timer
+## Summary
+* A user who is logged in will be able to start and end a working timer.
+
+## Actors
+* The User.
+* The App.
+
+## Preconditions
+* The user has to be logged in.
+
+## Triggers
+* The user can select the “Set Timer” option.
+
+## Primary Sequence
+* The System will let the user enter a specific amount of time in the format of 00:00:00.
+* The System also displays a pause and quit option.
+
+## Primary Postconditions
+* If the user selects the pause option, the timer will stop.
+* If the user selects the quit option, the timer will be set back to 00:00:00, and will not change until the user selects the Set Timer option.
+* If the timer finishes, the System will display a message, stating “Timer is Done.”
+* The user will be able to close the message, and the timer will remain at 00:00:00 until the user selects the Set Timer option.
+
+## Alternative Sequences
+* The user entered something that was not in the format of 00:00:00.
+* The System will display an error message.
+* The System will ask the user to enter an amount of time in the correct format.

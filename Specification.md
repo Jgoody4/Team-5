@@ -17,9 +17,9 @@ Better Student
 # Use Cases :
 
 ## Use Case Name: Shuffle Flashcards
-Non-functional requirement : System will respond to user input within 1 second. 
+* Non-functional requirement : System will respond to user input within 1 second. 
 ## Summary
-A user who is logged in will be able to shuffle their flashcards into a new order, different from the previous order.
+* A user who is logged in will be able to shuffle their flashcards into a new order, different from the previous order.
 
 ## Actors
 * The User.  
@@ -44,7 +44,7 @@ A user who is logged in will be able to shuffle their flashcards into a new orde
 
 ## Use Case Name: Use Pomodoro Timer
 ## Summary
-A user who is logged in will be able to set up a Pomodoro Timer, that is, a timer that tracks study time and break time.
+* A user who is logged in will be able to set up a Pomodoro Timer, that is, a timer that tracks study time and break time.
 
 ## Actors
 * The User.
@@ -69,7 +69,7 @@ A user who is logged in will be able to set up a Pomodoro Timer, that is, a time
 
 ## Use Case Name: Render Markdown Notes
 ## Summary
-A user who is logged in will be able to format their notes using Markdown syntax.
+* A user who is logged in will be able to format their notes using Markdown syntax.
 
 ## Actors
 * The User.
@@ -90,7 +90,7 @@ A user who is logged in will be able to format their notes using Markdown syntax
 
 ## Use Case Name: Organize Notes into Folders
 ## Summary
-A user who is logged in will be able to create folders for their notes and add notes into these folders. Folders may also be edited or deleted.
+* A user who is logged in will be able to create folders for their notes and add notes into these folders. Folders may also be edited or deleted.
 
 ## Actors
 * The User.
@@ -115,7 +115,7 @@ A user who is logged in will be able to create folders for their notes and add n
 
 ## Use Case Name: Share flashcards (add to their account)
 ## Summary
-A user who is logged in will be able to share flashcards with other users.
+* A user who is logged in will be able to share flashcards with other users.
 
 ## Actors
 * The User.
@@ -141,7 +141,7 @@ A user who is logged in will be able to share flashcards with other users.
 
 ## Use Case Name: Convert Markdown Notes to PDF
 ## Summary
-A user who is logged in will be able to convert their markdown notes into a pdf file.
+* A user who is logged in will be able to convert their markdown notes into a pdf file.
 
 ## Actors
 * The User.
@@ -162,7 +162,7 @@ A user who is logged in will be able to convert their markdown notes into a pdf 
 
 ## Use Case Name: Share Notes with other people (add to their account)
 ## Summary
-A user who is logged in will be able to share their notes with other users.
+* A user who is logged in will be able to share their notes with other users.
 
 ## Actors
 * The User.
@@ -188,7 +188,7 @@ A user who is logged in will be able to share their notes with other users.
 
 ## Use Case Name: Total time studying (having app open) (daily/weekly/monthly)
 ## Summary
-A user who is logged in will be able to see how long they have been using the app.
+* A user who is logged in will be able to see how long they have been using the app.
 
 ## Actors
 * The User.
@@ -212,9 +212,7 @@ A user who is logged in will be able to see how long they have been using the ap
 ## Primary Postconditions
 * The System should display the total time that they have had the app open.
 * The System shows the option to hide the display.
-
-<<<<<<< HEAD
-<<<<<<< HEAD
+D
 ## Use Case Name : Overhead view of all Flashcards 
 ##Summary 
 * A user who is logged in will be able to take his flashcards and display an overhead view of them all.
@@ -279,13 +277,10 @@ The user will be able to click cards away.
 
 ##Primary post conditions
 * User will be able to format code within the notes.
-=======
-Use Case Name: Create time blocks
-=======
+
 ## Use Case Name: Create time blocks
->>>>>>> 4f7f3afce91165a427cc728cfd9824dbfbbff6b4
 ## Summary
-The user sets a certain range of time that schedules their study time.
+* The user sets a certain range of time that schedules their study time.
 
 ## Actors
 * The App.
@@ -312,7 +307,7 @@ The user sets a certain range of time that schedules their study time.
 
 ## Use Case Name: Reminder popup
 ## Summary
-The app reminds the user to study with a popup notification based on the time block they have created.
+* The app reminds the user to study with a popup notification based on the time block they have created.
 
 ## Actors
 * The App.
@@ -336,14 +331,14 @@ The app reminds the user to study with a popup notification based on the time bl
 
 ## Use Case Name: Input a Markdown File and Output Flash Cards.
 ## Summary
-Generate flash cards based on the user’s inputs.
+* Generate flash cards based on the user’s inputs.
 
 ## Actors
 * The App.
 * The User.
 
 ## Preconditions
-*The user has logged in.
+* The user has logged in.
 
 ## Triggers
 * The user must select the add button to input a markdown file.
@@ -361,4 +356,3 @@ Generate flash cards based on the user’s inputs.
     * The System will display a message “Error: empty inputs. Cannot output flash cards”
     * The System will prompt the user to input notes again. 
 
->>>>>>> f80fc403288c872e5259369ec9b75e412a9c919a

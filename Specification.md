@@ -213,3 +213,81 @@ A user who is logged in will be able to see how long they have been using the ap
 * The System should display the total time that they have had the app open.
 * The System shows the option to hide the display.
 
+Use Case Name: Create time blocks
+## Summary
+The user sets a certain range of time that schedules their study time.
+
+## Actors
+* The App.
+* The User.
+
+## Preconditions
+* The user has logged in.
+
+## Triggers
+* The user must select the “Add Time Blocks” option.
+
+## Primary Sequence
+* The System will prompt the user to enter a time from and a time to (positive integers only).
+* The System prompts the user to enter what the time block is for by entering the description.
+* The User presses “enter” to create the time block.
+* The System then creates a time block specified by the user’s input.
+
+## Primary Postconditions
+* The time block made should be shown. 
+* The time block should be able to be dismissed automatically. 
+
+### Alternate Postconditions
+* The time block should be able to be dismissed manually if the user wants to.
+
+Use Case Name: Reminder popup
+## Summary
+The app reminds the user to study with a popup notification based on the time block they have created.
+
+## Actors
+* The App.
+
+## Preconditions
+* The user has created time blocks.
+
+## Triggers
+* The user must turn on notifications in the app.
+
+## Primary Sequence
+* The System displays the message “Reminders On” once notification is turned on.
+* The System will take note of the time blocks created to know when to show a reminder.
+
+## Primary Postconditions
+* A reminder popup should be shown.
+* The system shows an option to clear reminder(s).
+
+### Alternate Postconditions
+* The reminder does not show if the time block is dismissed.
+
+Use Case Name: Input a Markdown File and Output Flash Cards.
+## Summary
+Generate flash cards based on the user’s inputs.
+
+## Actors
+* The App.
+* The User.
+
+## Preconditions
+*The user has logged in.
+
+## Triggers
+* The user must select the add button to input a markdown file.
+
+## Primary Sequence
+* The System prompts the user to input notes to memorize.
+* The User presses “done” when finished inputting.
+* The System then creates flash cards based on the inputs.
+
+## Primary Postconditions
+* The flash cards are made and shown to the user.
+
+### Alternate Postconditions
+* The user has inputted an empty file.
+    * The System will display a message “Error: empty inputs. Cannot output flash cards”
+    * The System will prompt the user to input notes again. 
+

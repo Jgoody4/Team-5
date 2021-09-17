@@ -12,10 +12,14 @@ Joel Zapana (@jazapana)
 **Product name** :
 Better Student
 
+## Non Functional Requirements
+* System will respond to user input within 1 second.
+* Software will be able to run on all Operating Systems
+* Software will be fast and not take up more than 20% of ram usage
+
 # Use Cases :
 
-## Use Case Name: Shuffle Flashcards (Memorization)
-* Non-functional requirement : System will respond to user input within 1 second. 
+## Use Case Name: Shuffle Flashcards (Memorization) 
 ### Summary
 * A user who is logged in will be able to shuffle their flashcards into a new order, different from the previous order.
 

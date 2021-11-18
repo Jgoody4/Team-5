@@ -1,6 +1,7 @@
 from flask import Flask
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 the_site = Flask(__name__)

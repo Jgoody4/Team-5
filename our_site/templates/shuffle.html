@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>Shuffle Your Flashcards</title>
+	</head>
+	<body>
+		<h1>Shuffle!</h1>
+		{% for card in flash_cards %}
+		<div>
+			<ul>
+				<li>{{ card }}</li>
+			</ul>
+		</div>
+		{% endfor %}
+	</body>
+</html>

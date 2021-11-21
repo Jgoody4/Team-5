@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Enter Flashcards!</title>
+	</head>
+	<body>
+		<h1>Please Enter Your Flashcards!</h1>
+		<form action='' method='POST' novalidate>
+			{{ form.hidden_tag() }}
+			<p>
+				{{ form.card_term.label }} <br>
+				{{ form.card_term(size=64) }}
+			</p>
+			<p>
+				{{ form.card_def.label }} <br>
+				{{ form.card_def(size=128) }}
+			</p>
+			<p>
+				{{ form.submit() }}
+			</p>
+		</form>
+	</body>
+</html>

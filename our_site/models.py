@@ -1,3 +1,4 @@
+from flask import flash, redirect
 from flask_login import UserMixin
 from our_site import db, login
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -21,3 +22,8 @@ class User(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+@login.unauthorized_handler
+def unauthorized():
+    flash('You aren\'t authorized to go there!')
+    return redirect('/login')

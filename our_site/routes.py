@@ -2,7 +2,7 @@ from flask import escape, flash, render_template, redirect
 from flask_login import current_user, login_required, login_user, logout_user
 from our_site import the_site
 from our_site import db
-from our_site.forms import RegistrationForm
+from our_site.forms import RegistrationForm, LoginForm
 from our_site.models import User
 
 
@@ -26,7 +26,18 @@ def home():
 @the_site.route('/menu')
 @login_required
 def menu():
-    return '1'
+    return render_template('menu.html')
+
+@the_site.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and user.check_password(password=form.password.data):
+            login_user(user)
+            return redirect('/menu')
+        flash('Wrong username and/or password!')
+    return render_template('login.html', form=form)
 
 @the_site.route("/logout")
 def logout():

@@ -4,6 +4,15 @@
 	</head>
 	<body>
 		<h1>Here are all your flashcards!</h1>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
 		{% for card in all_cards %}
 		<div>
 			<dl>
@@ -12,5 +21,11 @@
 			</dl>
 		</div>
 		{% endfor %}
+		<form action='' method='POST' novalidate>
+			{{ form.hidden_tag() }}
+			<p>
+				{{ form.shuffler() }}
+			</p>
+		</form>
 	</body>
 </html>

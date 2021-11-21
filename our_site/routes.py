@@ -1,6 +1,6 @@
 from our_site import the_site, db
 from flask import render_template, redirect, flash
-from our_site.forms import TimeInserted, Shuffling
+from our_site.forms import TimeInserted, Shuffling, FlashCards
 from our_site.models import FlashCard
 import time
 import datetime
@@ -45,3 +45,14 @@ def overview():
 		# https://www.w3schools.com/python/ref_random_shuffle.asp
 		random.shuffle(all_cards)
 	return render_template('overview.html', all_cards=all_cards, form=form)
+
+@the_site.route('/createcards', methods=['GET', 'POST'])
+def createcards():
+	form = FlashCards()
+	if form.validate_on_submit():
+		flash('Flashcard added!')
+		card = FlashCard(card_term = form.card_term.data, card_def = form.card_def.data)
+		db.session.add(card)
+		db.session.commit()
+		return redirect('/createcards')
+	return render_template('entercard.html', form=form)

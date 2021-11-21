@@ -8,3 +8,8 @@ class TimeInserted(FlaskForm):
 
 class Shuffling(FlaskForm):
 	shuffler = SubmitField('Shuffle')
+
+class FlashCards(FlaskForm):
+	card_term = StringField('Term', validators=[DataRequired()])
+	card_def = StringField('Definition', validators=[DataRequired()])
+	submit = SubmitField('Submit')

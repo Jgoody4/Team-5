@@ -1,5 +1,6 @@
 from our_site import the_site
-from flask import render_template
+from flask import render_template, redirect
+from our_site.forms import TimeInserted
 import time
 import datetime
 
@@ -23,3 +24,11 @@ def timer(t):
 		return render_template('timer.html', timeSpent=timeSpent)
 	else:
 		return render_template('invalidTime.html')
+
+@the_site.route('/thetimer', methods=['GET', 'POST'])
+def thetimer():
+	form = TimeInserted()
+	if form.validate_on_submit():
+		theLink = '/timer/' + form.inserted_time.data + '/'
+		return redirect(theLink)
+	return render_template('thetimer.html', form=form)

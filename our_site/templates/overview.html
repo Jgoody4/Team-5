@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>Overhead View of Flashcards</title>
+	</head>
+	<body>
+		<h1>Here are all your flashcards!</h1>
+		{% for card in all_cards %}
+		<div>
+			<dl>
+				<dt>{{ card.card_term }}</dt>
+				<dd>- {{ card.card_def }}</dd>
+			</dl>
+		</div>
+		{% endfor %}
+	</body>
+</html>

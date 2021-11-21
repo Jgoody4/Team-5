@@ -1,5 +1,5 @@
 from flask import escape, flash, render_template, redirect
-from flask_login import login_required, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
 from our_site import the_site
 from our_site import db
 from our_site.forms import RegistrationForm
@@ -10,12 +10,17 @@ from our_site.models import User
 def home():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            redirect('/')
-        login_user(user, remember=form.remember_me.data)
-        return redirect('/menu')
+        existing_user = User.query.filter_by(username=form.username.data).first()
+        if existing_user is None:
+            new_user = User(
+                username = form.username.data
+            )
+            new_user.set_password(form.password.data)
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
+            return redirect('/menu')
+        flash('Usernames must be unique!')
     return render_template('home.html', form=form)
 
 @the_site.route('/menu')

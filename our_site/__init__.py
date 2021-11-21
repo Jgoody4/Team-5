@@ -14,5 +14,10 @@ the_site.config.from_mapping(
 )
 
 db = SQLAlchemy(the_site)
+with the_site.app_context():
+    db.create_all()
 
+login = LoginManager(the_site)
+# right side is the function that's called to login users
+login.login_view ='login'
 from our_site import routes, models

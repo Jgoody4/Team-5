@@ -1,9 +1,10 @@
 from our_site import the_site, db
-from flask import render_template, redirect
-from our_site.forms import TimeInserted
+from flask import render_template, redirect, flash
+from our_site.forms import TimeInserted, Shuffling
 from our_site.models import FlashCard
 import time
 import datetime
+import random
 
 @the_site.route('/')
 def home():
@@ -34,8 +35,13 @@ def thetimer():
 		return redirect(theLink)
 	return render_template('thetimer.html', form=form)
 
-@the_site.route('/overview')
+@the_site.route('/overview', methods=['GET', 'POST'])
 def overview():
+	form = Shuffling()
 	# https://www.w3schools.com/HTML/html_lists.asp
 	all_cards = FlashCard.query.all()
-	return render_template('overview.html', all_cards=all_cards)
+	if form.validate_on_submit():
+		flash('Cards have been shuffled!')
+		# https://www.w3schools.com/python/ref_random_shuffle.asp
+		random.shuffle(all_cards)
+	return render_template('overview.html', all_cards=all_cards, form=form)

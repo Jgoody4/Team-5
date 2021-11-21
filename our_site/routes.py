@@ -1,6 +1,7 @@
-from our_site import the_site
+from our_site import the_site, db
 from flask import render_template, redirect
 from our_site.forms import TimeInserted
+from our_site.models import FlashCard
 import time
 import datetime
 
@@ -32,3 +33,9 @@ def thetimer():
 		theLink = '/timer/' + form.inserted_time.data + '/'
 		return redirect(theLink)
 	return render_template('thetimer.html', form=form)
+
+@the_site.route('/overview')
+def overview():
+	# https://www.w3schools.com/HTML/html_lists.asp
+	all_cards = FlashCard.query.all()
+	return render_template('overview.html', all_cards=all_cards)

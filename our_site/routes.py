@@ -4,13 +4,16 @@ from our_site.models import FlashCard, User
 import time
 import datetime
 import random
-from flask import escape, flash, render_template, redirect
+from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
 
 @the_site.route('/', methods=['GET', 'POST'])
 def home():
     form = RegistrationForm()
-    if form.validate_on_submit():
+    print('before')
+    # if form.validate_on_submit():
+    if request.method == 'POST':
+        print('bs class')
         existing_user = User.query.filter_by(username=form.username.data).first()
         if existing_user is None:
             new_user = User(
@@ -22,6 +25,7 @@ def home():
             login_user(new_user)
             return redirect('/menu')
         flash('Usernames must be unique!')
+    print('no')
     return render_template('home.html', form=form)
 
 @the_site.route('/timer/<string:t>/')

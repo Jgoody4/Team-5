@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Length
+from wtforms.validators import DataRequired, EqualTo, Length, InputRequired
 
 class TimeInserted(FlaskForm):
 	inserted_time = StringField('Time', validators=[DataRequired()])
@@ -18,20 +18,20 @@ class RegistrationForm(FlaskForm):
     username = StringField(
         'Username',
         validators=[
-            DataRequired()
+            InputRequired()
         ]
     )
     password = PasswordField(
         'Password',
         validators=[
-            DataRequired(),
+            InputRequired(),
             Length(min=8, message='Password must be at least 8 characters!')
         ]
     )
     confirm = PasswordField(
         'Confirm Password',
         validators=[
-            DataRequired(),
+            InputRequired(),
             EqualTo(password, message='Passwords must match!')
         ]
     )

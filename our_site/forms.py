@@ -24,15 +24,14 @@ class RegistrationForm(FlaskForm):
     password = PasswordField(
         'Password',
         validators=[
-            InputRequired(),
-            Length(min=8, message='Password must be at least 8 characters!')
+            InputRequired()
         ]
     )
     confirm = PasswordField(
         'Confirm Password',
         validators=[
             InputRequired(),
-            EqualTo(password, message='Passwords must match!')
+            EqualTo('password', message='Passwords must match!')
         ]
     )
     submit = SubmitField('Register')

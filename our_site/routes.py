@@ -13,7 +13,6 @@ def home():
     print('before')
     # if form.validate_on_submit():
     if request.method == 'POST':
-        print('bs class')
         existing_user = User.query.filter_by(username=form.username.data).first()
         if existing_user is None:
             new_user = User(
@@ -25,7 +24,6 @@ def home():
             login_user(new_user)
             return redirect('/menu')
         flash('Usernames must be unique!')
-    print('no')
     return render_template('home.html', form=form)
 
 @the_site.route('/timer/<string:t>/')

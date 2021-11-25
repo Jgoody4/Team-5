@@ -57,7 +57,10 @@ def thetimer():
 def overview():
 	form = Shuffling()
 	# https://www.w3schools.com/HTML/html_lists.asp
-	all_cards = FlashCard.query.all()
+	# all_cards = FlashCard.query.all()
+	all_cards = []
+	for card in current_user.cardsofuser:
+		all_cards.append(card)
 	if form.validate_on_submit():
 		flash('Cards have been shuffled!')
 		# https://www.w3schools.com/python/ref_random_shuffle.asp
@@ -72,6 +75,14 @@ def createcards():
 		card = FlashCard(card_term = form.card_term.data, card_def = form.card_def.data)
 		db.session.add(card)
 		db.session.commit()
+		# https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
+		# https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#many-to-many
+		# https://www.youtube.com/watch?v=OvhoYbjtiKc
+		# Links I used to help make many to many relationships
+		# https://www.codegrepper.com/code-examples/python/how+to+check+if+user+is+logged+in+flask
+		if current_user.is_authenticated == True:
+			card.Users.append(current_user)
+			db.session.commit()
 		return redirect('/createcards')
 	return render_template('entercard.html', form=form)
 

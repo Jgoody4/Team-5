@@ -64,7 +64,7 @@ def overview():
     # all_cards = FlashCard.query.all()
     all_cards = []
     for card in current_user.cardsofuser:
-		all_cards.append(card)
+        all_cards.append(card)
     if form.validate_on_submit():
         flash('Cards have been shuffled!')
         # https://www.w3schools.com/python/ref_random_shuffle.asp

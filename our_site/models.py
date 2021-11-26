@@ -3,8 +3,13 @@ from flask_login import UserMixin
 from our_site import db, login
 from werkzeug.security import check_password_hash, generate_password_hash
 
+cards = db.Table('cards',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('flashcard_id', db.Integer, db.ForeignKey('flashcard.id'), primary_key=True)
+)
 
 class FlashCard(db.Model):
+    __tablename__ = 'flashcard'
     id = db.Column(db.Integer, primary_key=True)
     card_term = db.Column(db.String(64), index=True, unique=True)
     card_def = db.Column(db.String(128), index=True, unique=True)
@@ -14,6 +19,7 @@ class FlashCard(db.Model):
 
 
 class User(UserMixin, db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True, unique=True)
     password_hash = db.Column(db.String(256))
@@ -26,6 +32,8 @@ class User(UserMixin, db.Model):
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password, method='sha256')
+
+    cardsofuser = db.relationship('FlashCard', secondary=cards, lazy='subquery', backref=db.backref('Users', lazy=True))
 
 
 @login.user_loader

@@ -10,11 +10,9 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 @the_site.route('/', methods=['GET', 'POST'])
 def home():
-    print('t')
     form = RegistrationForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            print('s')
             existing_user = User.query.filter_by(
                 username=form.username.data).first()
             if existing_user is None:
@@ -27,7 +25,6 @@ def home():
                 login_user(new_user)
                 return redirect('/menu')
             flash('Usernames must be unique!')
-    print('h')
     flash(form.errors)
     return render_template('home.html', form=form)
 

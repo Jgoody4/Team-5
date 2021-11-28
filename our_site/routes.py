@@ -31,16 +31,36 @@ def home():
 
 @the_site.route('/timer/<string:t>/')
 def timer(t):
+    '''
+    Function works as a working timer, returns a page that displays the amount of time passed.
+
+        Parameters:
+            t (str): A string in the form of 00:00:00
+
+        Returns:
+            render_template (str, timeSpent): Page that either shows the amount of time that
+            had passed or an error page
+    '''
+    # Following code only works if t is in the form of 00:00:00, if not then error.
     if ':' in t:
+        # Splits the string into hours, minutes, and seconds.
         timeInput = t.split(':')
         hour = int(timeInput[0])
         minute = int(timeInput[1])
         second = int(timeInput[2])
+        # If the minute and second was more than 59, then it is an error.
         if minute > 59 or second > 59:
             return render_template('invalidTime.html')
-        # https://www.udacity.com/blog/2021/09/create-a-timer-in-python-step-by-step-guide.html
+        # Convert the string into its total seconds, then freezes the code's run for that time.
+        '''
+        Title: Create a Timer in Python: Step-by-Step Guide
+        Author: Udacity Team
+        Date: 2021
+        Availability: https://www.udacity.com/blog/2021/09/create-a-timer-in-python-step-by-step-guide.html
+        '''
         totalSeconds = hour * 3600 + minute * 60 + second
         time.sleep(totalSeconds)
+        # Creates string that contains the amount of time that had passed.
         timeSpent = str(hour) + ' hour(s), ' + str(minute) + \
             ' minute(s), and ' + str(second) + ' second(s) has/have passed!'
         return render_template('timer.html', timeSpent=timeSpent)
@@ -50,42 +70,80 @@ def timer(t):
 
 @the_site.route('/thetimer', methods=['GET', 'POST'])
 def thetimer():
+    '''
+    Returns a page that asks user to enter an amount of time.
+
+        Returns:
+            render_template (str, form): Page that asks user to enter an amount of time with a textbox
+            redirect (theLink): If the user submits the time, they will be redirected to the page that
+            displays the amount of time that had passed
+    '''
     form = TimeInserted()
+    # If the submit button was clicked, the user will be redirected to the page that displays the time passed.
     if form.validate_on_submit():
         theLink = '/timer/' + form.inserted_time.data + '/'
         return redirect(theLink)
     return render_template('thetimer.html', form=form)
 
 
-@the_site.route('/overview', methods=['GET', 'POST'])
-def overview():
+@the_site.route('/overheadview', methods=['GET', 'POST'])
+def overheadview():
+    '''
+    Returns a page that works as a overhead view page of the user's flashcards.
+
+        Returns:
+            render_template (str, all_cards, form): Page that prints all the user's flashcards in a
+            single page, as well as a shuffle button that shuffles the order.
+    '''
     form = Shuffling()
-    # https://www.w3schools.com/HTML/html_lists.asp
-    # all_cards = FlashCard.query.all()
     all_cards = []
+    # The user's flashcards are inserted into the all_cards list.
     for card in current_user.cardsofuser:
         all_cards.append(card)
+    # If the user clicks the shuffle button, the order of the flashcards in the page will be shuffled.
     if form.validate_on_submit():
         flash('Cards have been shuffled!')
-        # https://www.w3schools.com/python/ref_random_shuffle.asp
+        '''
+        Title: Python Random shuffle() Method
+        Author: w3schools
+        Date: 2021
+        Availability: https://www.w3schools.com/python/ref_random_shuffle.asp
+        '''
         random.shuffle(all_cards)
     return render_template('overview.html', all_cards=all_cards, form=form)
 
 
 @the_site.route('/createcards', methods=['GET', 'POST'])
 def createcards():
+    '''
+    Returns a page that allows the user to create their own flashcards.
+
+        Returns:
+            render_template (str, form): Page that asks the user to insert a term and definition in
+            textboxes to create a flashcard, and a button that submits the flashcard into the database
+            redirect (str): Redirects user back to this page
+    '''
     form = FlashCards()
+    # If the user hits submit, the flashcard will be made and added to the database.
     if form.validate_on_submit():
         flash('Flashcard added!')
         card = FlashCard(card_term=form.card_term.data,
                          card_def=form.card_def.data)
         db.session.add(card)
         db.session.commit()
-        # https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
-        # https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#many-to-many
-        # https://www.youtube.com/watch?v=OvhoYbjtiKc
-        # Links I used to help make many to many relationships
-        # https://www.codegrepper.com/code-examples/python/how+to+check+if+user+is+logged+in+flask
+        # If the user is signed in, the card will belong to the user.
+        '''
+        Title: Creating Many-To-Many Relationships in Flask-SQLAlchemy
+        Author: Pretty Printed
+        Date: 2016
+        Availability: https://www.youtube.com/watch?v=OvhoYbjtiKc
+        '''
+        '''
+        Title: Grepper
+        Author: Sistrometic
+        Date: 2020
+        Availability: https://www.codegrepper.com/code-examples/python/how+to+check+if+user+is+logged+in+flask
+        '''
         if current_user.is_authenticated == True:
             card.Users.append(current_user)
             db.session.commit()

@@ -1,17 +1,44 @@
-# Welcome to MkDocs
+# Welcome to BetterStudent
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+The ultimate school assistant. Includes features for note-taking and memorization.
 
-## Commands
+# Installation
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Prerequisites
 
-## Project layout
+You need to have Python3 installed on your machine. If you do not, follow [these
+instructions](https://realpython.com/installing-python/) to install.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Cloning the Repository
+
+To clone the repository, copy and paste the following into your terminal:
+```
+git clone https://github.com/Jgoody4/Team-5.git
+cd Team-5
+```
+
+### Installing Libraries
+
+While still in the `Team-5` directory, copy and paste the following into your
+terminal:
+```
+pip install flask flask-wtf flask-login
+```
+
+# Usage
+To run the program, in the `Team-5` directory, copy and paste the following
+into your terminal:
+```
+py run.py
+```
+If this gives errors, you can replace this with `python3 run.py` or `python run.py`.
+
+In a second terminal, copy and paste the following into your terminal:
+```py
+py
+from our_site import db
+from our_site.models import *
+db.create_all()
+```
+Finally, navigate to [`localhost:5000`](localhost:5000) and you will see the
+project!

@@ -4,6 +4,7 @@
 	</head>
 	<body>
 		<h1>Here are all your flashcards!</h1>
+		<!--Prints the flash message when user clicks on shuffle-->
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
 		<ul>
@@ -13,6 +14,12 @@
 		</ul>
 		{% endif %}
 		{% endwith %}
+		<!--Title: HTML Lists
+		Author: w3schools
+		Date: 2021
+		Availability: https://www.w3schools.com/HTML/html_lists.asp
+		-->
+		<!--Prints all the flashcards' terms and descriptions, with the descriptions indented under their terms-->
 		{% for card in all_cards %}
 		<div>
 			<dl>
@@ -21,11 +28,16 @@
 			</dl>
 		</div>
 		{% endfor %}
+		<!--The shuffle button-->
 		<form action='' method='POST' novalidate>
 			{{ form.hidden_tag() }}
 			<p>
 				{{ form.shuffler() }}
 			</p>
 		</form>
+		<!--Link that takes you back to the main menu-->
+		<div>
+			<a href='/menu'>Back</a>
+		</div>
 	</body>
 </html>

@@ -4,6 +4,7 @@
 	</head>
 	<body>
 		<h1>Please insert the time in the form of 00:00:00</h1>
+		<!--Textbox to insert the time-->
 		<form action='' method='POST' novalidate>
 			{{ form.hidden_tag() }}
 			<p>
@@ -14,5 +15,9 @@
 				{{ form.submit() }}
 			</p>
 		</form>
+		<!--Link that takes you back to the main menu-->
+		<div>
+			<a href='/menu'>Back</a>
+		</div>
 	</body>
 </html>

@@ -3,22 +3,35 @@ from flask_login import UserMixin
 from our_site import db, login
 from werkzeug.security import check_password_hash, generate_password_hash
 
+# Creates a table in order to create a successful many to many relationship.
+'''
+Title: Declaring Models
+Author: Pallets
+Date: 2010
+Availability: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
+'''
 cards = db.Table('cards',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('flashcard_id', db.Integer, db.ForeignKey('flashcard.id'), primary_key=True)
 )
 
 class FlashCard(db.Model):
+    # Overriding the table name.
     __tablename__ = 'flashcard'
+    # The flashcard model for the database, which contains the card's id, term and definition.
     id = db.Column(db.Integer, primary_key=True)
     card_term = db.Column(db.String(64), index=True, unique=True)
     card_def = db.Column(db.String(128), index=True, unique=True)
 
     def __repr__(self):
+        '''
+        Returns a string that represents a specific card's term and definition.
+        '''
         return f'Term: {self.card_term}, Definition: {self.card_def}'
 
 
 class User(UserMixin, db.Model):
+    # Overriding the table name.
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True, unique=True)
@@ -33,6 +46,7 @@ class User(UserMixin, db.Model):
     def set_password(self, password):
         self.password_hash = generate_password_hash(password, method='sha256')
 
+    # Creates a relationship between users and flashcards.
     cardsofuser = db.relationship('FlashCard', secondary=cards, lazy='subquery', backref=db.backref('Users', lazy=True))
 
 

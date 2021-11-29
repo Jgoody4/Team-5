@@ -63,6 +63,7 @@ class Stopwatch():
         #Here is when the user leaves the page the stopwatch ends
         end_time = time.time()
         time_studied = end_time - start_time
+        time_convert(time_studied)
 
 @login.user_loader
 def load_user(id):

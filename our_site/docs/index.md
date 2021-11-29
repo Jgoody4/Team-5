@@ -24,6 +24,7 @@ terminal:
 ```
 pip install flask flask-wtf flask-login
 ```
+This installs the three libraries necessary for functioning (and logins).
 
 # Usage
 To run the program, in the `Team-5` directory, copy and paste the following
@@ -42,3 +43,6 @@ db.create_all()
 ```
 Finally, navigate to [`localhost:5000`](localhost:5000) and you will see the
 project!
+
+Notice that most functionalities require a user to be logged in. The first page
+is a registration page for this very reason.

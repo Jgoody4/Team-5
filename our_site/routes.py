@@ -150,6 +150,53 @@ def createcards():
         return redirect('/createcards')
     return render_template('entercard.html', form=form)
 
+@the_site.route('/reminder', methods = ['GET','POST'])
+def reminder():
+    form = Reminder()
+    if form.validate_on_submit():
+        flash(f'Reminder to do: {form.reminder_task.data} at {form.reminder_time.data}')
+    return render_template('reminder.html', form = form)
+
+@the_site.route('/match', methods = ['GET', 'POST'])
+def match():
+    form = Match()
+    all_cards = FlashCard.query.all()
+    questionList = []
+    answerList= []
+    right = 0
+    wrong = 0
+        
+    random.shuffle(all_cards)
+
+    for cardTerm in all_cards.query.with_entities(FlashCard.card_term):
+        questionList.append(cardTerm)
+
+    for cardDef in all_cards.query.with_entities(FlashCard.card_def):
+        answerList.append(cardDef)
+
+    if form.validate_on_submit():
+        current_card_index = 0
+        while current_card_index <= len(questionList):
+            if form.answer.data == questionList[current_card_index]:
+                right += 1 
+            else:
+                wrong += 1
+            
+            current_card_index + 1
+        
+        right_total = right/len(questionList)
+        wrong_total = wrong/len(questionList)
+
+        return redirect("/results", right_total = right_total, wrong_total = wrong_total)
+    return render_template('match.html', form = form, questionList = questionList)
+
+@the_site.route('/results', methods = ['GET', 'POST'])
+def analytic():
+    return render_template('graph.html')
+
+@the_site.route('/markdown', methods = ['GET', 'POST'])
+def markdown():
+    return render_template('markdown.html')
 
 @the_site.route('/menu')
 @login_required

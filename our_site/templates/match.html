@@ -1,0 +1,24 @@
+<html>
+    <body>
+		<h1>Let's practice!</h1>
+		{% for card in questionList %}
+		<div>
+			<ul>
+				<li>{{ card }}</li>
+			</ul>
+		</div>
+		{% endfor %}
+	</body>
+    <body>
+        <form action='' method='POST' novalidate>
+			{{ form.hidden_tag() }}
+			<p>
+				{{ form.answer.label }} <br>
+				{{ form.answer(size=64) }}
+			</p>
+			<p>
+				{{ form.submit() }}
+			</p>
+		</form>
+    </body>
+</html>

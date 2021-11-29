@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Reminder</title>
+    </head>
+    <body>
+        <h1>Set a reminder</h1>
+        <!--
+            Displays reminder messages in an unordered list
+        -->
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </body>
+    
+    <!--
+        Textboxes to enter reminder task and the time for the task
+    -->
+    <body>
+        <form action='' method='POST' novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.reminder_task.label }}<br>
+                {{ form.reminder_task(size=24) }}
+            </p>
+            <p>
+                {{ form.reminder_time.label }} <br>
+                {{ form.reminder_time(size=24) }}
+            </p>
+            <p>
+                {{ form.submit() }}
+            </p>
+        </form>
+    </body>
+</html>

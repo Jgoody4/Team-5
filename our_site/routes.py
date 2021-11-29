@@ -10,9 +10,19 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 @the_site.route('/', methods=['GET', 'POST'])
 def home():
+    '''
+    Function that implements registration of users.
+
+        Returns:
+            render_template(str, form): Page that shows a form to register users
+            with unique username and password and a link to the login page.
+            redirect(str, <form>): Redirects user to a specific page. If the
+            <form> object was included, also returns the registration form.
+    '''
     form = RegistrationForm()
     if request.method == 'POST':
         if form.validate_on_submit():
+            # Checks if a specific username is taken already
             existing_user = User.query.filter_by(
                 username=form.username.data).first()
             if existing_user is None:
@@ -154,6 +164,12 @@ def createcards():
 @the_site.route('/menu')
 @login_required
 def menu():
+    '''
+    Function that shows the menu page with all the links to the various services.
+
+    Returns:
+        render_template(str): Page with links to all services and a logout option.
+    '''
     return render_template('menu.html')
 
 

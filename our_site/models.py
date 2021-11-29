@@ -2,6 +2,7 @@ from flask import flash, redirect
 from flask_login import UserMixin
 from our_site import db, login
 from werkzeug.security import check_password_hash, generate_password_hash
+import time
 
 # Creates a table in order to create a successful many to many relationship.
 '''
@@ -49,6 +50,13 @@ class User(UserMixin, db.Model):
     # Creates a relationship between users and flashcards.
     cardsofuser = db.relationship('FlashCard', secondary=cards, lazy='subquery', backref=db.backref('Users', lazy=True))
 
+#This class is used for a running timer for total time studied
+class Stopwatch():
+    def time_convert(sec):
+        mins = sec // 60
+        sec = sec % 60
+        hours = mins // 60
+        mins = mins % 60
 
 @login.user_loader
 def load_user(id):

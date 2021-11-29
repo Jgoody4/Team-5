@@ -57,6 +57,9 @@ class Stopwatch():
         sec = sec % 60
         hours = mins // 60
         mins = mins % 60
+        print("Time studied = {0}:{1}:{2}".format(int(hours), int(mins),sec))
+        #Here needs to be when user opens /stopwatch or /overheadview then start timer
+        start_time = time.time()
 
 @login.user_loader
 def load_user(id):

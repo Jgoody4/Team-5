@@ -18,6 +18,18 @@ class FlashCards(FlaskForm):
 	card_def = StringField('Definition', validators=[DataRequired()])
 	submit = SubmitField('Submit')
 
+class Reminder(FlaskForm):
+    # Textboxes used to enter reminder task and reminder time
+    reminder_task = StringField ('Reminder Task: ', validators= [DataRequired()])
+    reminder_time = StringField('Time (00:00)', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class Match(FlaskForm):
+    # Textbox used to enter the answer/definition to a term when matching terms to 
+    # definitions
+    answer = StringField('Answer', validators= [DataRequired()])
+    submit = SubmitField('Submit')
+
 class RegistrationForm(FlaskForm):
     username = StringField(
         'Username',

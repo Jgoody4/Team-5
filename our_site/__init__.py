@@ -1,10 +1,12 @@
 from flask import Flask
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 the_site = Flask(__name__)
+Bootstrap(the_site)
 
 the_site.config.from_mapping(
     SECRET_KEY = 'you-will-know',

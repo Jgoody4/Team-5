@@ -46,3 +46,52 @@ project!
 
 Notice that most functionalities require a user to be logged in. The first page
 is a registration page for this very reason.
+
+## Project Directory
+
+```
+Team-5
+│   .gitignore
+│   README.md
+│   run.py
+│   Specification.md
+│   test.txt
+│
+└───our_site
+    │   .DS_Store
+    │   app.db
+    │   forms.py
+    │   mkdocs.yml
+    │   models.py
+    │   routes.py
+    │   __init__.py
+    │
+    ├───docs
+    │       forms.md
+    │       index.md
+    │       models.md
+    │       routes.md
+    │
+    ├───templates
+    │       .DS_Store
+    │       entercard.html
+    │       folder.html
+    │       graph.html
+    │       highlight.html
+    │       home.html
+    │       invalidTime.html
+    │       login.html
+    │       markdown.html
+    │       match.html
+    │       menu.html
+    │       overview.html
+    │       reminder.html
+    │       thetimer.html
+    │       timer.html
+    │
+    └───__pycache__
+            forms.cpython-38.pyc
+            models.cpython-38.pyc
+            routes.cpython-38.pyc
+            __init__.cpython-38.pyc
+```

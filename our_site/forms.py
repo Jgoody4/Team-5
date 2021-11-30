@@ -31,6 +31,7 @@ class Match(FlaskForm):
     submit = SubmitField('Submit')
 
 class RegistrationForm(FlaskForm):
+    # Textboxes used to enter a username and password to save for registration
     username = StringField(
         'Username',
         validators=[
@@ -53,6 +54,9 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
+    # Textboxes used to login a user, checking their credentials to see if they
+    # exist in the database already, and determines whether or not to remember
+    # username and password
     username = StringField(
         'Username',
         validators=[

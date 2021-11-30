@@ -252,6 +252,14 @@ def menu():
 
 @the_site.route("/login", methods=['GET', 'POST'])
 def login():
+    '''
+    Function that shows the login page with a link to register user.
+
+    Returns:
+        render_template(str, form): Page that shows a form that takes a username
+        and password to login a user.
+        redirect(str): Redirects the user to the menu page.
+    '''
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -264,6 +272,12 @@ def login():
 
 @the_site.route("/logout")
 def logout():
+    '''
+    Function that logs out a user.
+
+    Returns:
+        redirect(str): Redirects a user to the registration page.
+    '''
     logout_user()
     flash('User logged out')
     return redirect('/')

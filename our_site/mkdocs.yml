@@ -1,4 +1,14 @@
 site_name: BetterStudent
 nav:
     - Home: index.md
-    - About: about.md
+    - About Routes: routes.md
+    - About Forms: forms.md
+    - About Models: models.md
+
+theme:
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - py
+    features:
+        - content.code.annotate #

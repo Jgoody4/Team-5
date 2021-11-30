@@ -31,6 +31,7 @@ class FlashCard(db.Model):
         return f'Term: {self.card_term}, Definition: {self.card_def}'
 
 
+# Class associated with a user, storing an ID, username, and password.
 class User(UserMixin, db.Model):
     # Overriding the table name.
     __tablename__ = 'user'
@@ -50,7 +51,7 @@ class User(UserMixin, db.Model):
     # Creates a relationship between users and flashcards.
     cardsofuser = db.relationship('FlashCard', secondary=cards, lazy='subquery', backref=db.backref('Users', lazy=True))
 
-#This class is used for a running timer for total time studied
+# This class is used for a running timer for total time studied
 class Stopwatch():
     def time_convert(sec):
         mins = sec // 60
@@ -58,9 +59,9 @@ class Stopwatch():
         hours = mins // 60
         mins = mins % 60
         print("Time studied = {0}:{1}:{2}".format(int(hours), int(mins),sec))
-        #Here needs to be when user opens /stopwatch or /overheadview then start timer
+        # Here needs to be when user opens /stopwatch or /overheadview then start timer
         start_time = time.time()
-        #Here is when the user leaves the page the stopwatch ends
+        # Here is when the user leaves the page the stopwatch ends
         end_time = time.time()
         time_studied = end_time - start_time
         time_convert(time_studied)

@@ -1,5 +1,5 @@
 from our_site import the_site, db
-from our_site.forms import TimeInserted, Shuffling, FlashCards, RegistrationForm, LoginForm
+from our_site.forms import Match, Reminder, TimeInserted, Shuffling, FlashCards, RegistrationForm, LoginForm
 from our_site.models import FlashCard, User
 import time
 import datetime
@@ -152,6 +152,14 @@ def createcards():
 
 @the_site.route('/reminder', methods = ['GET','POST'])
 def reminder():
+    '''
+    Returns a page that shows the reminders the user has set up.
+
+        Returns: 
+            render_template (str, form): The page have the user enter a task to set
+            reminder for and the time for the reminder and a submit button which 
+            will display the reminder
+    '''
     form = Reminder()
     if form.validate_on_submit():
         flash(f'Reminder to do: {form.reminder_task.data} at {form.reminder_time.data}')
@@ -159,6 +167,16 @@ def reminder():
 
 @the_site.route('/match', methods = ['GET', 'POST'])
 def match():
+    '''
+    Returns a page that tests the memorization of the user
+
+        Returns: 
+            render_template (str, form): Page shuffles the card and adds the cards' term
+            and definition to each respective list. Then the page will record the number 
+            of right or wrong based on text input into the form.
+            redirect (str): Redirects the user to a performance graph after going through
+            all the cards
+    '''
     form = Match()
     all_cards = FlashCard.query.all()
     questionList = []
@@ -168,11 +186,11 @@ def match():
         
     random.shuffle(all_cards)
 
-    for cardTerm in all_cards.query.with_entities(FlashCard.card_term):
-        questionList.append(cardTerm)
+    for card in all_cards:
+        questionList.append(card.card_term)
 
-    for cardDef in all_cards.query.with_entities(FlashCard.card_def):
-        answerList.append(cardDef)
+    for card in all_cards:
+        answerList.append(card.card_def)
 
     if form.validate_on_submit():
         current_card_index = 0
@@ -192,10 +210,22 @@ def match():
 
 @the_site.route('/results', methods = ['GET', 'POST'])
 def analytic():
+    '''
+    Returns a graph for the user to see their memorization performance
+
+        Return:
+            render_template(str): Shows a page of the graph
+    '''
     return render_template('graph.html')
 
 @the_site.route('/markdown', methods = ['GET', 'POST'])
 def markdown():
+    '''
+    Returns a page of the html version of the markdown notes
+
+        Return:
+            render_template(str): Shows the markdown notes the user had typed
+    '''
     return render_template('markdown.html')
 
 @the_site.route('/menu')

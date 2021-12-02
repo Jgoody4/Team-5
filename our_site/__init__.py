@@ -3,6 +3,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
 
 the_site = Flask(__name__)
 
@@ -16,6 +17,8 @@ the_site.config.from_mapping(
 db = SQLAlchemy(the_site)
 with the_site.app_context():
     db.create_all()
+
+Bootstrap(the_site)
 
 login = LoginManager(the_site)
 # right side is the function that's called to login users

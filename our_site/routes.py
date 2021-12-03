@@ -8,6 +8,7 @@ from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
 
 
+
 @the_site.route('/', methods=['GET', 'POST'])
 def home():
     '''

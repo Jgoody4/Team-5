@@ -241,6 +241,10 @@ def markdown():
     '''
     return render_template('markdown.html')
 
+@the_site.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
+
 @the_site.route('/menu')
 @login_required
 def menu():

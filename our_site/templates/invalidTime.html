@@ -1,3 +1,12 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+    href="{{url_for('.static', filename='invalidTime.css')}}">
+{% endblock %}
+
+{% block content %}
 <html>
 	<head>
 		<title>Invalid Time</title>
@@ -10,3 +19,4 @@
 		</div>
 	</body>
 </html>
+{% endblock %}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Markdown</title>
+    <h1>Input Your Markdown Notes Here!</h1>
+    <style>
+        div#textEditor{
+            margin: 0 auto;
+            width: 750px;
+            height: 300px;
+        }
+        div#ribbon{
+            border-bottom: none;
+            padding: 10px;
+            background-color: rgb(99, 219, 240);
+            color: white;
+            border-radius: 8px 8px 0px 0px;
+        }
+
+        div#ribbon > button{
+            color: rgb(34, 40, 70);
+            border: none;
+            outline: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        div#ribbon > button:hover{
+            background-color: rgb(50, 168, 189);
+            transition: all 0.3s linear 0s;
+        }
+
+        div#textArea{
+            border: 2px solid rgb(99, 219, 240);
+            height: 100%;
+            width: 746px;
+        }
+        iframe#theWYSIWYG{
+            height: 100%;
+            width: 100%;
+        }
+        input[type = 'color']{
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+    </style>
+
+    <script>
+        window.addEventListener('load', function(){
+            var editor = theWYSIWYG.document;
+            editor.designMode = 'on';
+
+            boldButton.addEventListener('click', function(){
+                editor.execCommand('Bold', false, null);
+            },false);
+
+            italicButton.addEventListener('click', function(){
+                editor.execCommand('Italic', false, null);
+            },false);
+
+            supButton.addEventListener('click', function(){
+                editor.execCommand('Superscript', false, null);
+            },false);
+
+            subButton.addEventListener('click', function(){
+                editor.execCommand('Subscript', false, null);
+            },false);
+
+            strikeButton.addEventListener('click', function(){
+                editor.execCommand('Strikethrough', false, null);
+            },false);
+
+            orderedListButton.addEventListener('click', function(){
+                editor.execCommand('InsertOrderedList', false, "newOL" + Math.round(Math.random() * 1000));
+            },false);
+
+            unorderedListButton.addEventListener('click', function(){
+                editor.execCommand('InsertUnorderedList', false, "newOL" + Math.round(Math.random() * 1000));
+            },false);
+
+            fontColorButton.addEventListener('change', function(event){
+                editor.execCommand('ForeColor', false, event.target.value)
+            }, false);
+
+            highlightButton.addEventListener('change', function(event){
+                editor.execCommand('BackColor', false, event.target.value)
+            }, false);
+
+            fontSizeChange.addEventListener('change', function(event){
+                editor.execCommand('FontSize', false, event.target.value)
+            }, false);
+
+        }, false);
+    </script>
+</head>
+
+<body>
+    <div id ='textEditor'>
+        <div id = 'ribbon'>
+            <button id = 'boldButton' title = 'Bold'><b>B</b></button>
+            <button id = 'italicButton' title = 'Italic'><em>I</em></button>
+            <button id = 'supButton' title = 'Superscript'>X<sup>2</sup></button>
+            <button id = 'subButton' title = 'Subscript'>X<sub>2</sub></button>
+            <button id = 'strikeButton' title = 'Strikethrough'><s>abc</s>></button>
+            <button id = 'orderedListButton' title = 'Numbered List'>(i)</button>
+            <button id = 'unorderedListButton' title = 'Bullet List'>&bull;</button>
+            <input type = 'color' id = 'fontColorButton' title = 'Change Font Color'>
+            <input type = 'color' id = 'highlightButton' title = 'Highlight Text'>
+            <select id = 'fontSizeChange'>
+                <script>
+                    for (var i = 1; i < 10; i++){
+                        document.write("<option value = '" +i+ "'>"+i+"</option>");
+                    }
+                </script>
+            </select>
+        </div>
+        <div id ='textArea'>
+            <iframe id ='theWYSIWYG' name = 'theWYSIWYG' frameborder = "0"></iframe>
+        </div>
+    </div>
+</body>
+
+<body>
+    <form action='' method='POST' novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.submit(size = 12) }}
+        </p>
+    </form>
+</body>
+ 
+</html>

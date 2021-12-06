@@ -30,6 +30,11 @@ class Match(FlaskForm):
     answer = StringField('Answer', validators= [DataRequired()])
     submit = SubmitField('Submit')
 
+class Markdown(FlaskForm):
+    title = StringField('Title: ', validators= [DataRequired()])
+    markdown = StringField('Markdown:', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 class RegistrationForm(FlaskForm):
     username = StringField(
         'Username',

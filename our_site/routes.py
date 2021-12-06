@@ -1,9 +1,10 @@
 from our_site import the_site, db
-from our_site.forms import Match, Reminder, TimeInserted, Shuffling, FlashCards, RegistrationForm, LoginForm
+from our_site.forms import Markdown, Match, Reminder, TimeInserted, Shuffling, FlashCards, RegistrationForm, LoginForm
 from our_site.models import FlashCard, User
 import time
 import datetime
 import random
+import markdown
 from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -226,7 +227,9 @@ def markdown():
         Return:
             render_template(str): Shows the markdown notes the user had typed
     '''
-    return render_template('markdown.html')
+    form = Markdown()
+        
+    return render_template('markdown.html', form = form)
 
 @the_site.route('/menu')
 @login_required

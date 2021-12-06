@@ -8,6 +8,7 @@ from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
 
 
+
 @the_site.route('/', methods=['GET', 'POST'])
 def home():
     '''
@@ -237,6 +238,10 @@ def markdown():
             render_template(str): Shows the markdown notes the user had typed
     '''
     return render_template('markdown.html')
+
+@the_site.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
 
 @the_site.route('/menu')
 @login_required

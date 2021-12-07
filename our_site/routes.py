@@ -260,11 +260,11 @@ def schedule():
     if request.method == 'POST':
         print(form.validate_on_submit())
         if form.validate_on_submit():
-            form.start_date.data = datetime.strptime(f'{form.start_date.data}',
+            start = datetime.strptime(f'{form.start_date.data}',
                                                      '%Y-%m-%d %H:%M:%S')
-            form.end_date.data = datetime.strptime(f'{form.end_date.data}',
+            end = datetime.strptime(f'{form.end_date.data}',
                                                    '%Y-%m-%d %H:%M:%S')
-            flash('Go study some flashcards.')
+            flash(f'Event {form.name.data} created!')
             event = Dates(
                 name=form.name.data,
                 start_datetime=form.start_date.data,

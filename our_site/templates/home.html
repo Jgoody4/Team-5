@@ -1,41 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Better Student</title>
-  </head>
+{% extends "bootstrap/base.html" %}
 
-  <body>
-    <h1>Welcome to Better Student!</h1>
-    <h2>Register below</h2>
-    <a href='/login'>Login</a>
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet"
+    href="{{url_for('.static', filename='home.css')}}">
+{% endblock %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    {% endwith %}
-    
-    <form action="" method="POST">
-      {{ form.hidden_tag() }}
-      <p>
-        {{ form.username.label }} <br>
-        {{ form.username(size=32) }}
-      </p>
-      <p>
-        {{ form.password.label }} <br>
-        {{ form.password(size=32) }}
-      </p>
-      <p>
-        {{ form.confirm.label }} <br>
-        {{ form.confirm(size=32) }}
-      </p>
-      <p>
-        {{ form.submit() }}
-      </p>
-    </form>
-  </body>
-</html>
+{% block title %}Better Student{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-static-top">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/login">
+        <span class="glyphicon glyphicon-log-in"></span>Login
+      </a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+  <h1>Register Below</h1>
+  <p>Enter a username and password, then confirm password.</p>
+  <p>If you have an account already, login at the top-right of the page!</p>
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.username.label }} <br>
+      {{ form.username(size=32) }}
+    </p>
+    <p>
+      {{ form.password.label }} <br>
+      {{ form.password(size=32) }}
+    </p>
+    <p>
+      {{ form.confirm.label }} <br>
+      {{ form.confirm(size=32) }}
+    </p>
+    <p>
+      {{ form.submit() }}
+    </p>
+  </form>
+{% endblock %}

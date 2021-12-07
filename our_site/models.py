@@ -16,10 +16,10 @@ cards = db.Table('cards',
     db.Column('flashcard_id', db.Integer, db.ForeignKey('flashcard.id'), primary_key=True)
 )
 
-dates = db.Table('dates',
-    db.Column('dates_id', db.Integer, db.ForeignKey('dates.id'), primary_key=True),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
-)
+# dates = db.Table('dates',
+#     db.Column('dates_id', db.Integer, db.ForeignKey('dates.id'), primary_key=True),
+#     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+# )
 
 class FlashCard(db.Model):
     # Overriding the table name.
@@ -71,8 +71,8 @@ class User(UserMixin, db.Model):
     backref=db.backref('Users', lazy=True))
 
     # Creates a relationship between users and dates.
-    datesofuser = db.relationship('Dates', secondary=dates, lazy='subquery',
-    backref=db.backref('Users', lazy=True))
+    # datesofuser = db.relationship('Dates', secondary=dates, lazy='subquery',
+    # backref=db.backref('Users', lazy=True))
 
 # This class is used for a running timer for total time studied
 class Stopwatch():

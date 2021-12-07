@@ -1,8 +1,8 @@
 from our_site import the_site, db
-from our_site.forms import Match, Reminder, TimeInserted, Shuffling, FlashCards, RegistrationForm, LoginForm
-from our_site.models import FlashCard, User
+from our_site.forms import *
+from our_site.models import *
 import time
-import datetime
+from datetime import *
 import random
 from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
@@ -241,9 +241,29 @@ def markdown():
     '''
     return render_template('markdown.html')
 
-@the_site.route('/schedule')
+@the_site.route('/schedule', methods = ['GET', 'POST'])
+@login_required
 def schedule():
-    return render_template('schedule.html')
+    form = DateForm()
+    if request.method == 'POST':
+        print(form.validate_on_submit())
+        if form.validate_on_submit():
+            form.start_date.data = datetime.strptime(f'{form.start_date.data}',
+            '%Y-%m-%d %H:%M:%S')
+            form.end_date.data = datetime.strptime(f'{form.end_date.data}',
+            '%Y-%m-%d %H:%M:%S')
+            flash('Go study some flashcards.')
+            event = Dates(
+                name=form.name.data,
+                start_datetime=form.start_date.data,
+                end_datetime=form.end_date.data
+            )
+            db.session.add(event)
+            db.session.commit()
+            return redirect('/menu')
+        flash('Enter the date in the correct format!')
+    flash(form.errors)
+    return render_template('schedule.html', form=form)
 
 @the_site.route('/menu')
 @login_required
@@ -267,6 +287,8 @@ def login():
         and password to login a user.
         redirect(str): Redirects the user to the menu page.
     '''
+    if current_user.is_authenticated():
+        return redirect('/menu')
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()

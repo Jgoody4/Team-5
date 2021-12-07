@@ -1,4 +1,25 @@
 {% extends "menu.html" %}
 {% block content %}
   <h1>Schedule</h1>
+
+  <body>
+    <form action="" method="POST">
+      {{ form.hidden_tag() }}
+      <p>
+        {{ form.name.label }} <br>
+        {{ form.name(size=32) }}
+      </p>
+      <p>
+        {{ form.start_date.label }} <br>
+        {{ form.start_date() }}
+      </p>
+      <p>
+        {{ form.end_date.label }} <br>
+        {{ form.end_date() }}
+      </p>
+      <p>
+        {{ form.submit() }}
+      </p>
+    </form>
+  </body>
 {% endblock %}

@@ -1,6 +1,22 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.fields.html5 import DateTimeLocalField
 from wtforms.validators import DataRequired, EqualTo, Length, InputRequired
+
+class DateForm(FlaskForm):
+    # A textbox to input a date and time for study blocks.
+    name = StringField(
+        'Event Name'
+    )
+    start_date = DateTimeLocalField(
+        'Start Date/Time',
+        format='%Y-%m-%dT%H:%M'
+    )
+    end_date = DateTimeLocalField(
+        'End Date/Time',
+        format='%Y-%m-%dT%H:%M'
+    )
+    submit = SubmitField('Submit')
 
 class TimeInserted(FlaskForm):
 	# A textbox to insert time and a submit button, both used for the timer.

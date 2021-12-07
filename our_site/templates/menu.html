@@ -4,8 +4,18 @@
     <title>Better Student</title>
   </head>
 
-  <h1>Main Menu</h1>
+  <h1>Welcome.</h1>
   <a href="/logout">Logout</a>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endwith %}
   
   <body>
     <ul>

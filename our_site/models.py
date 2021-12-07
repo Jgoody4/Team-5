@@ -16,6 +16,11 @@ cards = db.Table('cards',
     db.Column('flashcard_id', db.Integer, db.ForeignKey('flashcard.id'), primary_key=True)
 )
 
+dates = db.Table('dates',
+    db.Column('dates_id', db.Integer, db.ForeignKey('dates.id'), primary_key=True),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
+)
+
 class FlashCard(db.Model):
     # Overriding the table name.
     __tablename__ = 'flashcard'
@@ -30,6 +35,19 @@ class FlashCard(db.Model):
         '''
         return f'Term: {self.card_term}, Definition: {self.card_def}'
 
+# Class associated with a user's study-blocks.
+class Dates(db.Model):
+    __tablename__ = 'dates'
+    __table_args__ = {'extend_existing': True}
+    # The date model, containing a date's ID, name, and start/end dates and times.
+    id = db.Column(db.Integer, primary_key=True, nullable=False,
+    autoincrement=True)
+    name = db.Column(db.String(64))
+    start_datetime = db.Column(db.DateTime)
+    end_datetime = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return {self.id, self.name, self.start_datetime, self.end_datetime}
 
 # Class associated with a user, storing an ID, username, and password.
 class User(UserMixin, db.Model):
@@ -49,7 +67,12 @@ class User(UserMixin, db.Model):
         self.password_hash = generate_password_hash(password, method='sha256')
 
     # Creates a relationship between users and flashcards.
-    cardsofuser = db.relationship('FlashCard', secondary=cards, lazy='subquery', backref=db.backref('Users', lazy=True))
+    cardsofuser = db.relationship('FlashCard', secondary=cards, lazy='subquery',
+    backref=db.backref('Users', lazy=True))
+
+    # Creates a relationship between users and dates.
+    datesofuser = db.relationship('Dates', secondary=dates, lazy='subquery',
+    backref=db.backref('Users', lazy=True))
 
 # This class is used for a running timer for total time studied
 class Stopwatch():

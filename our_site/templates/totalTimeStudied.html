@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Total Time Studied</title>
+        <script type="text/javascript">
+        var ID=0;
+        var seconds=0;
+        function printMsg()
+        {
+            document.getElementById("op").innerHTML=seconds+" seconds";
+            seconds++;
+        }
+        function start()
+        {
+            ID=window.setInterval(printMsg,1000);
+        }
+        function stop()
+        {
+            window.clearInterval(ID);
+        }
+        </script>
+    </head>
+    <body>
+
+        <button onclick="start()" id="btnAdd">Start</button>
+        <h2 id="op">Some Text </h2>
+        <button onclick="stop()" id="btnStop">Stop</button>
+    </body>
+
+</html>

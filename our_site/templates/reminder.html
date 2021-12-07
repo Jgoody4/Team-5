@@ -1,3 +1,13 @@
+{% extends "bootstrap/base.html" %}
+{% include "menu.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+    href="{{url_for('.static', filename='reminder.css')}}">
+{% endblock %}
+
+{% block content %}
 <html>
     <head>
         <title>Reminder</title>
@@ -39,3 +49,4 @@
         </form>
     </body>
 </html>
+{% endblock %}

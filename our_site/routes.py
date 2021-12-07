@@ -1,7 +1,7 @@
 from our_site import the_site, db, mail
 from our_site.forms import *
 from our_site.models import *
-import time
+import time as TIME
 from datetime import *
 import random
 import markdown
@@ -76,7 +76,7 @@ def timer(t):
         Availability: https://www.udacity.com/blog/2021/09/create-a-timer-in-python-step-by-step-guide.html
         '''
         totalSeconds = hour * 3600 + minute * 60 + second
-        time.sleep(totalSeconds)
+        TIME.sleep(totalSeconds)
         # Creates string that contains the amount of time that had passed.
         timeSpent = str(hour) + ' hour(s), ' + str(minute) + \
             ' minute(s), and ' + str(second) + ' second(s) has/have passed!'

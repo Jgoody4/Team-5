@@ -1,20 +1,6 @@
-{% extends "bootstrap/base.html" %}
-
-{% block styles %}
-{{super()}}
-<link rel="stylesheet"
-    href="{{url_for('.static', filename='entercard.css')}}">
-{% endblock %}
-
+{% extends "menu.html" %}
 {% block content %}
-<html>
-	<head>
-		<title>Enter Flashcards!</title>
-	</head>
 	<body>
-		<div>
-			<a href="/logout">Logout</a>
-		</div>
 		<h1>Please Enter Your Flashcards!</h1>
 		<!--Prints the flash message when user clicks on submit-->
 		{% with messages = get_flashed_messages() %}
@@ -41,10 +27,5 @@
 				{{ form.submit() }}
 			</p>
 		</form>
-		<!--Link that takes you back to the main menu-->
-		<div>
-			<a href='/menu'>Back To Menu</a>
-		</div>
 	</body>
-</html>
 {% endblock %}

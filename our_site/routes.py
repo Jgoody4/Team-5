@@ -1,4 +1,4 @@
-from our_site import the_site, db
+from our_site import the_site, db, mail
 from our_site.forms import *
 from our_site.models import *
 import time
@@ -7,10 +7,13 @@ import random
 import markdown
 from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
+from flask_mail import Message
+
 
 @the_site.route('/', methods=['GET', 'POST'])
 def splash():
     return render_template('splash.html')
+
 
 @the_site.route('/registration', methods=['GET', 'POST'])
 def home():
@@ -164,7 +167,8 @@ def createcards():
         return redirect('/createcards')
     return render_template('entercard.html', form=form)
 
-@the_site.route('/reminder', methods = ['GET','POST'])
+
+@the_site.route('/reminder', methods=['GET', 'POST'])
 def reminder():
     '''
     Returns a page that shows the reminders the user has set up.
@@ -176,10 +180,12 @@ def reminder():
     '''
     form = Reminder()
     if form.validate_on_submit():
-        flash(f'Reminder to do: {form.reminder_task.data} at {form.reminder_time.data}')
-    return render_template('reminder.html', form = form)
+        flash(
+            f'Reminder to do: {form.reminder_task.data} at {form.reminder_time.data}')
+    return render_template('reminder.html', form=form)
 
-@the_site.route('/match', methods = ['GET', 'POST'])
+
+@the_site.route('/match', methods=['GET', 'POST'])
 def match():
     '''
     Returns a page that tests the memorization of the user
@@ -194,10 +200,10 @@ def match():
     form = Match()
     all_cards = FlashCard.query.all()
     questionList = []
-    answerList= []
+    answerList = []
     right = 0
     wrong = 0
-        
+
     random.shuffle(all_cards)
 
     for card in all_cards:
@@ -210,19 +216,20 @@ def match():
         current_card_index = 0
         while current_card_index <= len(questionList):
             if form.answer.data == questionList[current_card_index]:
-                right += 1 
+                right += 1
             else:
                 wrong += 1
-            
+
             current_card_index + 1
-        
+
         right_total = right/len(questionList)
         wrong_total = wrong/len(questionList)
 
-        return redirect("/results", right_total = right_total, wrong_total = wrong_total)
-    return render_template('match.html', form = form, questionList = questionList)
+        return redirect("/results", right_total=right_total, wrong_total=wrong_total)
+    return render_template('match.html', form=form, questionList=questionList)
 
-@the_site.route('/results', methods = ['GET', 'POST'])
+
+@the_site.route('/results', methods=['GET', 'POST'])
 def analytic():
     '''
     Returns a graph for the user to see their memorization performance
@@ -232,7 +239,8 @@ def analytic():
     '''
     return render_template('graph.html')
 
-@the_site.route('/markdown', methods = ['GET', 'POST'])
+
+@the_site.route('/markdown', methods=['GET', 'POST'])
 def markdown():
     '''
     Returns a page of the html version of the markdown notes
@@ -241,10 +249,11 @@ def markdown():
             render_template(str): Shows the markdown notes the user had typed
     '''
     form = Markdown()
-        
-    return render_template('markdown.html', form = form)
 
-@the_site.route('/schedule', methods = ['GET', 'POST'])
+    return render_template('markdown.html', form=form)
+
+
+@the_site.route('/schedule', methods=['GET', 'POST'])
 @login_required
 def schedule():
     form = DateForm()
@@ -252,9 +261,9 @@ def schedule():
         print(form.validate_on_submit())
         if form.validate_on_submit():
             form.start_date.data = datetime.strptime(f'{form.start_date.data}',
-            '%Y-%m-%d %H:%M:%S')
+                                                     '%Y-%m-%d %H:%M:%S')
             form.end_date.data = datetime.strptime(f'{form.end_date.data}',
-            '%Y-%m-%d %H:%M:%S')
+                                                   '%Y-%m-%d %H:%M:%S')
             flash('Go study some flashcards.')
             event = Dates(
                 name=form.name.data,
@@ -267,6 +276,35 @@ def schedule():
         flash('Enter the date in the correct format!')
     flash(form.errors)
     return render_template('schedule.html', form=form)
+
+
+@the_site.route('/share', methods=['GET', 'POST'])
+def share():
+    form = MailingForm()
+    if request.method == 'POST':
+        try:
+            email = str(request.form['email'])
+            subject = str(request.form['subject'])
+            msg_body = 'I\'m sending you these notes!'
+            message = Message(
+                subject,
+                sender='teamfive131s02@gmail.com',
+                recipients=[email]
+            )
+            message.body = msg_body
+            message.attach(
+                form.file.data.filename,
+                'application/octect-stream',
+                form.file.data.read()
+            )
+            mail.send(message)
+            flash('Notes sent!')
+            return redirect('/menu')
+        except ConnectionRefusedError as connectionRefusedError_:
+            return 'Didn\'t send email. Try again later.'
+    else:
+        return render_template('share.html', form=form)
+
 
 @the_site.route('/menu')
 @login_required
@@ -290,8 +328,6 @@ def login():
         and password to login a user.
         redirect(str): Redirects the user to the menu page.
     '''
-    if current_user.is_authenticated():
-        return redirect('/menu')
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()

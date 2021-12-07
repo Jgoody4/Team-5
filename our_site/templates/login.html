@@ -1,38 +1,50 @@
-<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
 
-<html>
-  <head>
-    <title>Better Student</title>
-  </head>
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet"
+    href="{{url_for('.static', filename='login.css')}}">
+{% endblock %}
 
-  <body>
-    <h1>Welcome to Better Student!</h1>
-    <h2>Login below</h2>
-    <a href='/'>Register</a>
+{% block title %}Better Student{% endblock %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    {% endwith %}
-    
-    <form action="" method="POST" novalidate>
-      {{ form.hidden_tag() }}
-      <p>
-        {{ form.username.label }} <br>
-        {{ form.username(size=32) }}
-      </p>
-      <p>
-        {{ form.password.label }} <br>
-        {{ form.password(size=32) }}
-      </p>
-      <p>
-        {{ form.submit() }}
-      </p>
-    </form>
-  </body>
-</html>
+{% block navbar %}
+<div class="navbar navbar-static-top">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/registration">
+        <span class="glyphicon glyphicon-plus"></span>Register
+      </a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+  <h1>Sign-In Below</h1>
+  <p>If you have no account yet, login at the top-right of the page!</p>
+  <form action="" method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.username.label }} <br>
+      {{ form.username(size=32) }}
+    </p>
+    <p>
+      {{ form.password.label }} <br>
+      {{ form.password(size=32) }}
+    </p>
+    <p>
+      {{ form.submit() }}
+    </p>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "menu.html" %}
+{% block content %}
+  <h1>Share</h1>
+
+  <body>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <p>Share to This Email</p>
+      <input type="email" name="email"></input>
+      <p>Subject</p>
+      <input type="text" name="subject"></input>
+      <p>
+        {{ form.file.label }}<br>
+        {{ form.file() }}
+      </p>
+      <p>
+        {{ form.submit() }}
+      </p>
+    </form>
+  </body>
+{% endblock %}

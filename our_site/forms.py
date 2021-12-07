@@ -1,6 +1,33 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Length, InputRequired
+from wtforms.fields.html5 import DateTimeLocalField
+from wtforms.validators import DataRequired, EqualTo, InputRequired
+
+class DateForm(FlaskForm):
+    # A textbox to input a date and time for study blocks.
+    name = StringField(
+        'Event Name'
+    )
+    start_date = DateTimeLocalField(
+        'Start Date/Time',
+        format='%Y-%m-%dT%H:%M'
+    )
+    end_date = DateTimeLocalField(
+        'End Date/Time',
+        format='%Y-%m-%dT%H:%M'
+    )
+    submit = SubmitField('Submit')
+
+class MailingForm(FlaskForm):
+    file = FileField(
+        'File Upload',
+        validators=[
+            FileRequired(),
+            FileAllowed(['md', 'pdf'], '.md and .pdf files only!')
+        ]
+    )
+    submit = SubmitField('Upload and Email')
 
 class TimeInserted(FlaskForm):
 	# A textbox to insert time and a submit button, both used for the timer.
@@ -28,6 +55,11 @@ class Match(FlaskForm):
     # Textbox used to enter the answer/definition to a term when matching terms to 
     # definitions
     answer = StringField('Answer', validators= [DataRequired()])
+    submit = SubmitField('Submit')
+
+class Markdown(FlaskForm):
+    title = StringField('Title: ', validators= [DataRequired()])
+    markdown = StringField('Markdown:', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 class RegistrationForm(FlaskForm):

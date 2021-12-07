@@ -3,10 +3,20 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
 the_site = Flask(__name__)
 Bootstrap(the_site)
+
+the_site.config['MAIL_SERVER'] = 'smtp.gmail.com'
+the_site.config['MAIL_PORT'] = 465
+the_site.config['MAIL_USERNAME'] = 'teamfive131s02@gmail.com'
+the_site.config['MAIL_PASSWORD'] = '0megaLuL'
+the_site.config["MAIL_USE_TLS"] = False
+the_site.config['MAIL_USE_SSL'] = True
+
+mail = Mail(the_site)
 
 the_site.config.from_mapping(
     SECRET_KEY = 'you-will-know',

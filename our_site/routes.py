@@ -105,7 +105,7 @@ def thetimer():
 #Justin
 @the_site.route('/totalTimeStudied', methods=['GET', 'POST'])
 def totalTimeStudied():
-    return render_template('totalTimeStudied')
+    return render_template('totalTimeStudied.html')
 
 @the_site.route('/overheadview', methods=['GET', 'POST'])
 def overheadview():

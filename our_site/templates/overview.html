@@ -1,11 +1,16 @@
-{% extends "highlight.html" %}
+{% extends "bootstrap/base.html" %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+    href="{{url_for(".static", filename="overview.css")}}">
+{% endblock %}
 {% block content %}
 <html>
 	<head>
 		<title>Overhead View of Flashcards</title>
 	</head>
 	<body>
-		<h1>Here are all your flashcards!</h1>
+		<h1 align="left">Here are all your flashcards!</h1>
 		<!--Prints the flash message when user clicks on shuffle-->
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}

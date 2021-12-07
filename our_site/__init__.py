@@ -4,7 +4,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from flask_bootstrap import Bootstrap
 
 the_site = Flask(__name__)
 Bootstrap(the_site)

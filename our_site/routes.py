@@ -102,6 +102,10 @@ def thetimer():
         return redirect(theLink)
     return render_template('thetimer.html', form=form)
 
+#Justin
+@the_site.route('/totalTimeStudied', methods=['GET', 'POST'])
+def totalTimeStudied():
+    return render_template('totalTimeStudied.html')
 
 @the_site.route('/overheadview', methods=['GET', 'POST'])
 def overheadview():

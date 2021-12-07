@@ -4,6 +4,7 @@ from our_site.models import *
 import time
 from datetime import *
 import random
+import markdown
 from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -239,7 +240,9 @@ def markdown():
         Return:
             render_template(str): Shows the markdown notes the user had typed
     '''
-    return render_template('markdown.html')
+    form = Markdown()
+        
+    return render_template('markdown.html', form = form)
 
 @the_site.route('/schedule', methods = ['GET', 'POST'])
 @login_required

@@ -9,14 +9,20 @@
 {% block content %}
 <html>
 	<head>
-		<title>The Timer</title>
+		<title>How much time has passed?</title>
 	</head>
 	<body>
+		<div>
+			<a href="/logout">Logout</a>
+		</div>
 		<!--The message displays how much time had passed-->
 		<h1>{{ timeSpent }}</h1>
 		<!--Link that sends user to the page to enter in a time again-->
 		<div>
 			<a href='/thetimer'>Reset the Timer</a>
+		</div>
+		<div>
+			<a href='/menu'>Back To Menu</a>
 		</div>
 	</body>
 </html>

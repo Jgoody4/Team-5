@@ -12,6 +12,10 @@
 		<title>Enter Flashcards!</title>
 	</head>
 	<body>
+		<div>
+			<a href="/logout">Logout</a>
+		</div>
+		<h1>Please Enter Your Flashcards!</h1>
 		<!--Prints the flash message when user clicks on submit-->
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
@@ -22,17 +26,16 @@
 		</ul>
 		{% endif %}
 		{% endwith %}
-		<h1>Please Enter Your Flashcards!</h1>
 		<!--The textboxes for term, definition, and the submit button-->
 		<form action='' method='POST' novalidate>
 			{{ form.hidden_tag() }}
 			<p>
 				{{ form.card_term.label }} <br>
-				{{ form.card_term(size=64) }}
+				{{ form.card_term(size=32) }}
 			</p>
 			<p>
 				{{ form.card_def.label }} <br>
-				{{ form.card_def(size=128) }}
+				{{ form.card_def(size=32) }}
 			</p>
 			<p>
 				{{ form.submit() }}
@@ -40,7 +43,7 @@
 		</form>
 		<!--Link that takes you back to the main menu-->
 		<div>
-			<a href='/menu'>Back</a>
+			<a href='/menu'>Back To Menu</a>
 		</div>
 	</body>
 </html>

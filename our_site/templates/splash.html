@@ -1,13 +1,44 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+    href="{{url_for('.static', filename='splash.css')}}">
+{% endblock %}
+
+{% block content %}
 <html>
 	<head>
 		<title>Better Student: Welcome!</title>
 	</head>
 	<body>
-		<h1>Introduction to Better Student!</h1>
+		<h1>Introduction to Better Student</h1>
+		<p>Do you ever have trouble studying? Has it been difficult finding the perfect studying tool?</p>
+		<p>Well look no further, because <strong>Better Student</strong> is right for you!</p>
+		<img src="https://i.postimg.cc/rFgs3Ctm/Screen-Shot-2021-12-06-at-3-05-15-PM.png" alt="Better Student Intro Picture" class="center">
+		
+		<p>There are so many things that you can do with our studying tool!</p>
+		<p>You can create your own personal flashcards!</p>
+		<img src="https://i.postimg.cc/rFgs3Ctm/Screen-Shot-2021-12-06-at-3-05-15-PM.png" alt="Create your own FlashCards Page" class="center">
+		
+		<p>You can also share your cards with other users!</p>
+		<img src="https://i.postimg.cc/rFgs3Ctm/Screen-Shot-2021-12-06-at-3-05-15-PM.png" alt="Share FlashCards Page" class="center">
+		
+		<p>You will be able to see how long it took you to study!</p>
+		<img src="https://i.postimg.cc/rFgs3Ctm/Screen-Shot-2021-12-06-at-3-05-15-PM.png" alt="Total Time Studying Page" class="center">
+		
+		<p>You will also receieve reminder popups!</p>
+		<img src="https://i.postimg.cc/rFgs3Ctm/Screen-Shot-2021-12-06-at-3-05-15-PM.png" alt="Reminder Popups Page" class="center">
+		
+		<p>And that's not all! You will find that their are more things to do!</p>
+		<img src="https://i.postimg.cc/rFgs3Ctm/Screen-Shot-2021-12-06-at-3-05-15-PM.png" alt="Better Student Menu Page" class="center">
+		
+		<p>To do all of these things, all you have to do is sign up!</p>
+		<p>So what are you waiting for? Click the link below to begin your journey into becoming a <strong>Better Student</strong>!</p>
 		<!--Link that takes you to the registration page-->
-		<img src="https://i.postimg.cc/7YwLpsq8/testpic.png" alt="Test Picture" width="300" height="300">
 		<div>
 			<a href='/registration'>Register/Login</a>
 		</div>
 	</body>
 </html>
+{% endblock %}

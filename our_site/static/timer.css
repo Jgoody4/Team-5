@@ -1,13 +1,13 @@
 h1 {
     text-align: center;
-    color: red;
+    color: OrangeRed;
 }
 
 body {
-    background-color: black;
+    background-color: PapayaWhip;
 }
 
-a {
+div, a {
     text-align: center;
-    color: white;
+    color: OrangeRed;
 }

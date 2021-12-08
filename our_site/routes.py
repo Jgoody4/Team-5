@@ -4,7 +4,6 @@ from our_site.models import *
 import time as TIME
 from datetime import *
 import random
-import markdown
 from flask import escape, flash, render_template, redirect, request
 from flask_login import current_user, login_required, login_user, logout_user
 from flask_mail import Message
